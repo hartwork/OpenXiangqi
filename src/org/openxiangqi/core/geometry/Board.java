@@ -19,13 +19,12 @@ package org.openxiangqi.core.geometry;
 
 import java.util.Iterator;
 
-import org.openxiangqi.core.Side;
 import org.openxiangqi.core.Side.Player;
-import org.openxiangqi.core.pieces.Cannon;
 import org.openxiangqi.core.pieces.Adviser;
+import org.openxiangqi.core.pieces.Cannon;
+import org.openxiangqi.core.pieces.Elephant;
 import org.openxiangqi.core.pieces.King;
 import org.openxiangqi.core.pieces.Knight;
-import org.openxiangqi.core.pieces.Elephant;
 import org.openxiangqi.core.pieces.Pawn;
 import org.openxiangqi.core.pieces.Piece;
 import org.openxiangqi.core.pieces.Rook;
