@@ -23,7 +23,7 @@ import org.openxiangqi.core.geometry.Board;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 
-public class Cannon extends Piece {
+public class Cannon extends PieceBase {
 	public char getHtLauAbbreviation() {
 		return 'C';
 	}

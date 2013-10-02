@@ -23,7 +23,7 @@ import org.openxiangqi.core.exceptions.rules.PieceMustNotCrossRiver;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 
-public class Elephant extends Piece {
+public class Elephant extends PieceBase {
 	public char getHtLauAbbreviation() {
 		return 'M';
 	}

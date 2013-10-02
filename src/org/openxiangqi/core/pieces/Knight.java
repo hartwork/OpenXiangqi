@@ -24,7 +24,7 @@ import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 
-public class Knight extends Piece {
+public class Knight extends PieceBase {
 	public char getHtLauAbbreviation() {
 		return 'N';
 	}

@@ -23,7 +23,7 @@ import org.openxiangqi.core.exceptions.rules.PieceMustNotLeavePalace;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 
-public class Adviser extends Piece {
+public class Adviser extends PieceBase {
 	public char getHtLauAbbreviation() {
 		return 'S';
 	}

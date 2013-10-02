@@ -23,7 +23,7 @@ import org.openxiangqi.core.geometry.Board;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 
-public class Rook extends Piece {
+public class Rook extends PieceBase {
 	public char getHtLauAbbreviation() {
 		return 'R';
 	}

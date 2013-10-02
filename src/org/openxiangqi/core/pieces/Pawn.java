@@ -25,7 +25,7 @@ import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 
-public class Pawn extends Piece {
+public class Pawn extends PieceBase {
 	public char getHtLauAbbreviation() {
 		return 'P';
 	}
