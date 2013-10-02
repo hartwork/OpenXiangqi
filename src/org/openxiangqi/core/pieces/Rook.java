@@ -28,6 +28,10 @@ public class Rook extends PieceBase {
 		return 'R';
 	}
 
+	public char getWxfAbbreviation() {
+		return 'R';
+	}
+
 	@Override
 	protected PlayerRelativeLocation calculateMoveTarget(PlayerRelativeMove move)
 			throws OffTheBoardException, EmptyBoardIllegalMoveException {

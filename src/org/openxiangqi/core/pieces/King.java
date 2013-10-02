@@ -28,6 +28,10 @@ public class King extends PieceBase {
 		return 'K';
 	}
 
+	public char getWxfAbbreviation() {
+		return 'K';
+	}
+
 	@Override
 	protected PlayerRelativeLocation calculateMoveTarget(PlayerRelativeMove move)
 			throws OffTheBoardException, EmptyBoardIllegalMoveException {

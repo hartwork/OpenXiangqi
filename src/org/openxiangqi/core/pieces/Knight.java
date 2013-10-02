@@ -29,6 +29,10 @@ public class Knight extends PieceBase {
 		return 'N';
 	}
 
+	public char getWxfAbbreviation() {
+		return 'H';
+	}
+
 	protected PlayerRelativeLocation calculateMoveTarget(PlayerRelativeMove move)
 			throws OffTheBoardException, EmptyBoardIllegalMoveException {
 		if (move.getDirection() == Direction.HORIZONTAL) {

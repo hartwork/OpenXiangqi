@@ -29,6 +29,8 @@ public interface Piece {
 
 	public char getHtLauAbbreviation();
 
+	public char getWxfAbbreviation();
+
 	public void movePlayerRelative(Board board, PlayerRelativeMove move)
 			throws EmptyBoardIllegalMoveException, OffTheBoardException;
 

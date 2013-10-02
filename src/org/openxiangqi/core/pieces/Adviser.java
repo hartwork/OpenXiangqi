@@ -28,6 +28,10 @@ public class Adviser extends PieceBase {
 		return 'S';
 	}
 
+	public char getWxfAbbreviation() {
+		return 'A';
+	}
+
 	@Override
 	protected PlayerRelativeLocation calculateMoveTarget(PlayerRelativeMove move)
 			throws OffTheBoardException, EmptyBoardIllegalMoveException {
