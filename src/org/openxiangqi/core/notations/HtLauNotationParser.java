@@ -23,29 +23,47 @@ import java.util.regex.Pattern;
 import org.openxiangqi.core.exceptions.MalformedNotation;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
-import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
 
-public class HtLauNotationParser {
+public class HtLauNotationParser extends NotationParserBase {
 	private static String REGEX_PATTERN = "^((([CSKNMPR])([1-9]))|(([fr])([CSNMPR])))([fbh])([1-9])$";
-
-	public enum Strictness {
-		STRICT, LOOSE
-	}
 
 	public Notation parse(String notation, Strictness strictness)
 			throws MalformedNotation {
-		Pattern p = Pattern.compile(REGEX_PATTERN, (strictness == Strictness.STRICT) ? 0
-				: Pattern.CASE_INSENSITIVE);
+		Pattern p = Pattern.compile(REGEX_PATTERN,
+				(strictness == Strictness.STRICT) ? 0
+						: Pattern.CASE_INSENSITIVE);
 		Matcher m = p.matcher(notation);
 
 		if (!m.matches()) {
 			throw new MalformedNotation();
 		}
 
-		HorizontalConfiguration horizontalConfiguration = (m.group(3) == null) ? HorizontalConfiguration.SAME_VERTICAL_LINE
-				: HorizontalConfiguration.DIFFERENT_VERTICAL_LINES;
+		String pieceAbbreviationFirst = m.group(3);
+		String horizontalLocationString = m.group(4);
+		String relativeVerticalLocationString = m.group(6);
+		String pieceAbbreviationSecond = m.group(7);
+		String directionString = m.group(8);
+		String parameterString = m.group(9);
 
-		char directionChar = Character.toLowerCase(m.group(8).charAt(0));
+		return assemble(pieceAbbreviationFirst, horizontalLocationString,
+				relativeVerticalLocationString, pieceAbbreviationSecond,
+				directionString, parameterString);
+	}
+
+	protected LooseVerticalLocation lookUpVerticalLocation(
+			char playerRelativeVerticalLocationChar) {
+		LooseVerticalLocation playerRelativeVerticalLocationEnum = null;
+		if (playerRelativeVerticalLocationChar == 'f') {
+			playerRelativeVerticalLocationEnum = LooseVerticalLocation.FRONT;
+		} else if (playerRelativeVerticalLocationChar == 'r') {
+			playerRelativeVerticalLocationEnum = LooseVerticalLocation.REAR;
+		} else {
+			assert false;
+		}
+		return playerRelativeVerticalLocationEnum;
+	}
+
+	protected Direction lookUpDirection(char directionChar) {
 		Direction directionEnum = null;
 		if (directionChar == 'f') {
 			directionEnum = Direction.FORWARD;
@@ -56,30 +74,7 @@ public class HtLauNotationParser {
 		} else {
 			assert false;
 		}
-		int parameter = Integer.parseInt(m.group(9));
-
-		char pieceAbbreviation = (char) -1;
-		int playerRelativeHorizontalLocation = -1;
-		LooseVerticalLocation playerRelativeVerticalLocationEnum = null;
-		if (horizontalConfiguration == HorizontalConfiguration.SAME_VERTICAL_LINE) {
-			pieceAbbreviation = Character.toUpperCase(m.group(7).charAt(0));
-			char playerRelativeVerticalLocationChar = Character.toLowerCase(m
-					.group(6).charAt(0));
-			if (playerRelativeVerticalLocationChar == 'f') {
-				playerRelativeVerticalLocationEnum = LooseVerticalLocation.FRONT;
-			} else if (playerRelativeVerticalLocationChar == 'r') {
-				playerRelativeVerticalLocationEnum = LooseVerticalLocation.REAR;
-			} else {
-				assert false;
-			}
-		} else {
-			pieceAbbreviation = Character.toUpperCase(m.group(3).charAt(0));
-			playerRelativeHorizontalLocation = Integer.parseInt(m.group(4));
-		}
-
-		return new Notation(pieceAbbreviation, horizontalConfiguration,
-				playerRelativeHorizontalLocation,
-				playerRelativeVerticalLocationEnum, directionEnum, parameter);
+		return directionEnum;
 	}
 
 }

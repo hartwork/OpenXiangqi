@@ -24,9 +24,9 @@ import org.openxiangqi.core.exceptions.MalformedNotation;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 import org.openxiangqi.core.notations.HtLauNotationParser;
-import org.openxiangqi.core.notations.HtLauNotationParser.Strictness;
 import org.openxiangqi.core.notations.Notation;
 import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
+import org.openxiangqi.core.notations.NotationParserBase.Strictness;
 
 public class TestHtLauNotation {
 

@@ -24,8 +24,8 @@ import org.openxiangqi.core.exceptions.rules.EmptyBoardIllegalMoveException;
 import org.openxiangqi.core.exceptions.rules.OffTheBoardException;
 import org.openxiangqi.core.geometry.Board;
 import org.openxiangqi.core.notations.HtLauNotationParser;
-import org.openxiangqi.core.notations.HtLauNotationParser.Strictness;
 import org.openxiangqi.core.notations.Notation;
+import org.openxiangqi.core.notations.NotationParserBase.Strictness;
 
 public class Game {
 
