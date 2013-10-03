@@ -55,6 +55,23 @@ public class Notation {
 		this.parameter = parameter;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if ((obj == null) || !(obj instanceof Notation)) {
+			return false;
+		}
+		Notation other = (Notation) obj;
+		return (direction == other.direction)
+				&& (horizontalConfiguration == other.horizontalConfiguration)
+				&& (parameter == other.parameter)
+				&& (pieceAbbreviation == other.pieceAbbreviation)
+				&& (playerRelativeHorizontalLocation == other.playerRelativeHorizontalLocation)
+				&& (playerRelativeVerticalLocation == other.playerRelativeVerticalLocation);
+	}
+
 	private Piece findPieceByHorizontalLocation(Board board,
 			char pieceAbbreviation, int playerRelativeHorizontalLocation,
 			Player player) throws NoSuchPieceException {
