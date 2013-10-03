@@ -26,7 +26,7 @@ import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
 
 public class HtLauNotation {
-	private static String REGEX_PATTERN = "^((([CSKNMPR])([1-9]))|(([fb])([CSNMPR])))([fbh])([1-9])$";
+	private static String REGEX_PATTERN = "^((([CSKNMPR])([1-9]))|(([fr])([CSNMPR])))([fbh])([1-9])$";
 
 	public enum Strictness {
 		STRICT, LOOSE
@@ -42,7 +42,7 @@ public class HtLauNotation {
 			throw new MalformedNotation();
 		}
 
-		HorizontalConfiguration horizontalConfiguration = m.group(3).isEmpty() ? HorizontalConfiguration.SAME_VERTICAL_LINE
+		HorizontalConfiguration horizontalConfiguration = (m.group(3) == null) ? HorizontalConfiguration.SAME_VERTICAL_LINE
 				: HorizontalConfiguration.DIFFERENT_VERTICAL_LINES;
 
 		char directionChar = Character.toLowerCase(m.group(8).charAt(0));
@@ -67,7 +67,7 @@ public class HtLauNotation {
 					.group(6).charAt(0));
 			if (playerRelativeVerticalLocationChar == 'f') {
 				playerRelativeVerticalLocationEnum = LooseVerticalLocation.FRONT;
-			} else if (playerRelativeVerticalLocationChar == 'f') {
+			} else if (playerRelativeVerticalLocationChar == 'r') {
 				playerRelativeVerticalLocationEnum = LooseVerticalLocation.REAR;
 			} else {
 				assert false;
