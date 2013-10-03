@@ -25,14 +25,14 @@ import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocatio
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
 
-public class HtLauNotation {
+public class HtLauNotationParser {
 	private static String REGEX_PATTERN = "^((([CSKNMPR])([1-9]))|(([fr])([CSNMPR])))([fbh])([1-9])$";
 
 	public enum Strictness {
 		STRICT, LOOSE
 	}
 
-	public static Notation parse(String notation, Strictness strictness)
+	public Notation parse(String notation, Strictness strictness)
 			throws MalformedNotation {
 		Pattern p = Pattern.compile(REGEX_PATTERN, (strictness == Strictness.STRICT) ? 0
 				: Pattern.CASE_INSENSITIVE);

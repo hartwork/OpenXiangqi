@@ -23,8 +23,8 @@ import org.junit.Test;
 import org.openxiangqi.core.exceptions.MalformedNotation;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
-import org.openxiangqi.core.notations.HtLauNotation;
-import org.openxiangqi.core.notations.HtLauNotation.Strictness;
+import org.openxiangqi.core.notations.HtLauNotationParser;
+import org.openxiangqi.core.notations.HtLauNotationParser.Strictness;
 import org.openxiangqi.core.notations.Notation;
 import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
 
@@ -32,7 +32,7 @@ public class TestHtLauNotation {
 
 	@Test
 	public void testStraightValidForward() throws MalformedNotation {
-		Notation receivedNotation = HtLauNotation.parse("R1f2",
+		Notation receivedNotation = new HtLauNotationParser().parse("R1f2",
 				Strictness.STRICT);
 		Notation expectedNotation = new Notation('R',
 				HorizontalConfiguration.DIFFERENT_VERTICAL_LINES, 1, null,
@@ -42,7 +42,7 @@ public class TestHtLauNotation {
 
 	@Test
 	public void testStraightValidBackward() throws MalformedNotation {
-		Notation receivedNotation = HtLauNotation.parse("R3b4",
+		Notation receivedNotation = new HtLauNotationParser().parse("R3b4",
 				Strictness.STRICT);
 		Notation expectedNotation = new Notation('R',
 				HorizontalConfiguration.DIFFERENT_VERTICAL_LINES, 3, null,
@@ -52,7 +52,7 @@ public class TestHtLauNotation {
 
 	@Test
 	public void testStraightValidHorizontal() throws MalformedNotation {
-		Notation receivedNotation = HtLauNotation.parse("R5h6",
+		Notation receivedNotation = new HtLauNotationParser().parse("R5h6",
 				Strictness.STRICT);
 		Notation expectedNotation = new Notation('R',
 				HorizontalConfiguration.DIFFERENT_VERTICAL_LINES, 5, null,
@@ -62,7 +62,7 @@ public class TestHtLauNotation {
 
 	@Test
 	public void testSameVerticalLineFront() throws MalformedNotation {
-		Notation receivedNotation = HtLauNotation.parse("fRh7",
+		Notation receivedNotation = new HtLauNotationParser().parse("fRh7",
 				Strictness.STRICT);
 		Notation expectedNotation = new Notation('R',
 				HorizontalConfiguration.SAME_VERTICAL_LINE, -1,
@@ -72,7 +72,7 @@ public class TestHtLauNotation {
 
 	@Test
 	public void testSameVerticalLineRear() throws MalformedNotation {
-		Notation receivedNotation = HtLauNotation.parse("rRh8",
+		Notation receivedNotation = new HtLauNotationParser().parse("rRh8",
 				Strictness.STRICT);
 		Notation expectedNotation = new Notation('R',
 				HorizontalConfiguration.SAME_VERTICAL_LINE, -1,
