@@ -17,37 +17,18 @@
  */
 package org.openxiangqi.core.notations;
 
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.openxiangqi.core.Side.Player;
 import org.openxiangqi.core.exceptions.MalformedNotation;
-import org.openxiangqi.core.exceptions.NoSuchPieceException;
-import org.openxiangqi.core.exceptions.rules.EmptyBoardIllegalMoveException;
-import org.openxiangqi.core.exceptions.rules.OffTheBoardException;
-import org.openxiangqi.core.geometry.Board;
-import org.openxiangqi.core.geometry.PlayerRelativeMove;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
-import org.openxiangqi.core.pieces.Piece;
+import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
 
 public class HtLauNotation {
 	private static String REGEX_PATTERN = "^((([CSKNMPR])([1-9]))|(([fb])([CSNMPR])))([fbh])([1-9])$";
 
-	private enum HorizontalConfiguration {
-		SAME_VERTICAL_LINE, DIFFERENT_VERTICAL_LINES,
-	}
-
-	private char pieceAbbreviation;
-	private HorizontalConfiguration horizontalConfiguration;
-	private int playerRelativeHorizontalLocation;
-	private LooseVerticalLocation playerRelativeVerticalLocation;
-
-	private Direction direction;
-	private int parameter;
-
-	public static HtLauNotation parse(String notation) throws MalformedNotation {
+	public static Notation parse(String notation) throws MalformedNotation {
 		Pattern p = Pattern.compile(REGEX_PATTERN, Pattern.CASE_INSENSITIVE);
 		Matcher m = p.matcher(notation);
 
@@ -90,87 +71,9 @@ public class HtLauNotation {
 			playerRelativeHorizontalLocation = Integer.parseInt(m.group(4));
 		}
 
-		return new HtLauNotation(pieceAbbreviation, horizontalConfiguration,
+		return new Notation(pieceAbbreviation, horizontalConfiguration,
 				playerRelativeHorizontalLocation,
 				playerRelativeVerticalLocationEnum, directionEnum, parameter);
 	}
 
-	private HtLauNotation(char pieceAbbreviation,
-			HorizontalConfiguration horizontalConfiguration,
-			int playerRelativeHorizontalLocation,
-			LooseVerticalLocation playerRelativeVerticalLocation,
-			Direction direction, int parameter) {
-		this.pieceAbbreviation = pieceAbbreviation;
-		this.horizontalConfiguration = horizontalConfiguration;
-		this.playerRelativeHorizontalLocation = playerRelativeHorizontalLocation;
-		this.playerRelativeVerticalLocation = playerRelativeVerticalLocation;
-		this.direction = direction;
-		this.parameter = parameter;
-	}
-
-	private Piece findPieceByHorizontalLocation(Board board,
-			char pieceAbbreviation, int playerRelativeHorizontalLocation,
-			Player player) throws NoSuchPieceException {
-		for (Piece piece : board) {
-			if ((piece.getHtLauAbbreviation() == pieceAbbreviation)
-					&& (piece.getPlayer() == player)
-					&& (piece.getPlayerRelativeLocation().getHorizontal() == playerRelativeHorizontalLocation)) {
-				return piece;
-			}
-		}
-		throw new NoSuchPieceException();
-	}
-
-	private Piece findPieceByVerticalLocation(Board board,
-			char pieceAbbreviation,
-			LooseVerticalLocation playerRelativeVerticalLocation, Player player)
-			throws NoSuchPieceException {
-		int resIndex = -1;
-		int resVertical = -1;
-		ArrayList<Piece> candidates = new ArrayList<Piece>();
-		for (Piece piece : board) {
-			if ((piece.getHtLauAbbreviation() == pieceAbbreviation)
-					&& (piece.getPlayer() == player)) {
-				candidates.add(piece);
-
-				// Best candidate yet?
-				if (candidates.isEmpty()) {
-					resIndex = 0;
-					resVertical = piece.getPlayerRelativeLocation()
-							.getVertical();
-				} else {
-					final int prevVertical = resVertical;
-					final int curVertical = piece.getPlayerRelativeLocation()
-							.getVertical();
-
-					if (((playerRelativeVerticalLocation == LooseVerticalLocation.FRONT) && (curVertical > prevVertical))
-							|| ((playerRelativeVerticalLocation == LooseVerticalLocation.FRONT) && (curVertical < prevVertical))) {
-						resIndex = candidates.size() - 1;
-						resVertical = curVertical;
-					}
-				}
-			}
-		}
-
-		if (candidates.isEmpty()) {
-			throw new NoSuchPieceException();
-		}
-
-		return candidates.get(resIndex);
-	}
-
-	public void apply(Board board, Player player) throws NoSuchPieceException,
-			OffTheBoardException, EmptyBoardIllegalMoveException {
-		Piece piece = null;
-		if (horizontalConfiguration == HorizontalConfiguration.SAME_VERTICAL_LINE) {
-			piece = findPieceByVerticalLocation(board, pieceAbbreviation,
-					playerRelativeVerticalLocation, player);
-		} else {
-			piece = findPieceByHorizontalLocation(board, pieceAbbreviation,
-					playerRelativeHorizontalLocation, player);
-		}
-
-		PlayerRelativeMove move = new PlayerRelativeMove(direction, parameter);
-		piece.movePlayerRelative(board, move);
-	}
 }

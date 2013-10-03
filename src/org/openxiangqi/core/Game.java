@@ -24,6 +24,7 @@ import org.openxiangqi.core.exceptions.rules.EmptyBoardIllegalMoveException;
 import org.openxiangqi.core.exceptions.rules.OffTheBoardException;
 import org.openxiangqi.core.geometry.Board;
 import org.openxiangqi.core.notations.HtLauNotation;
+import org.openxiangqi.core.notations.Notation;
 
 public class Game {
 
@@ -38,7 +39,7 @@ public class Game {
 
 	public void perform(String command) throws NoSuchPieceException,
 			OffTheBoardException, MalformedNotation, EmptyBoardIllegalMoveException {
-		HtLauNotation requestedMove = HtLauNotation.parse(command);
+		Notation requestedMove = HtLauNotation.parse(command);
 		requestedMove.apply(board, player);
 
 		switchTurn();
