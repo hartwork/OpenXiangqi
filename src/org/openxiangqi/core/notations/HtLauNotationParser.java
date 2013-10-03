@@ -25,7 +25,7 @@ import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocatio
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 
 public class HtLauNotationParser extends NotationParserBase {
-	private static String REGEX_PATTERN = "^((([CSKNMPR])([1-9]))|(([fr])([CSNMPR])))([fbh])([1-9])$";
+	private static String REGEX_PATTERN = "^(([CSKNMPR])([1-9])|([fr])([CSNMPR]))([fbh])([1-9])$";
 
 	public Notation parse(String notation, Strictness strictness)
 			throws MalformedNotation {
@@ -38,12 +38,12 @@ public class HtLauNotationParser extends NotationParserBase {
 			throw new MalformedNotation();
 		}
 
-		String pieceAbbreviationFirst = m.group(3);
-		String horizontalLocationString = m.group(4);
-		String relativeVerticalLocationString = m.group(6);
-		String pieceAbbreviationSecond = m.group(7);
-		String directionString = m.group(8);
-		String parameterString = m.group(9);
+		String pieceAbbreviationFirst = m.group(2);
+		String horizontalLocationString = m.group(3);
+		String relativeVerticalLocationString = m.group(4);
+		String pieceAbbreviationSecond = m.group(5);
+		String directionString = m.group(6);
+		String parameterString = m.group(7);
 
 		return assemble(pieceAbbreviationFirst, horizontalLocationString,
 				relativeVerticalLocationString, pieceAbbreviationSecond,
