@@ -28,8 +28,14 @@ import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
 public class HtLauNotation {
 	private static String REGEX_PATTERN = "^((([CSKNMPR])([1-9]))|(([fb])([CSNMPR])))([fbh])([1-9])$";
 
-	public static Notation parse(String notation) throws MalformedNotation {
-		Pattern p = Pattern.compile(REGEX_PATTERN, Pattern.CASE_INSENSITIVE);
+	public enum Strictness {
+		STRICT, LOOSE
+	}
+
+	public static Notation parse(String notation, Strictness strictness)
+			throws MalformedNotation {
+		Pattern p = Pattern.compile(REGEX_PATTERN, (strictness == Strictness.STRICT) ? 0
+				: Pattern.CASE_INSENSITIVE);
 		Matcher m = p.matcher(notation);
 
 		if (!m.matches()) {
