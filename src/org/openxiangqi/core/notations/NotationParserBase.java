@@ -36,7 +36,7 @@ public abstract class NotationParserBase {
 			String relativeVerticalLocationString,
 			String pieceAbbreviationSecond, String directionString,
 			String parameterString) {
-		HorizontalConfiguration horizontalConfiguration = (pieceAbbreviationFirst == null) ? HorizontalConfiguration.SAME_VERTICAL_LINE
+		HorizontalConfiguration horizontalConfiguration = (relativeVerticalLocationString != null) ? HorizontalConfiguration.SAME_VERTICAL_LINE
 				: HorizontalConfiguration.DIFFERENT_VERTICAL_LINES;
 
 		char directionChar = Character.toLowerCase(directionString.charAt(0));
