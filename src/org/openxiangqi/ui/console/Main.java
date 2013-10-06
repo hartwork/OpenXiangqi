@@ -30,7 +30,7 @@ import org.openxiangqi.core.exceptions.rules.EmptyBoardIllegalMoveException;
 import org.openxiangqi.core.exceptions.rules.OffTheBoardException;
 import org.openxiangqi.core.geometry.Board;
 import org.openxiangqi.core.geometry.BoardLocation;
-import org.openxiangqi.core.notations.HtLauNotationParser;
+import org.openxiangqi.core.notations.WxfNotationParser;
 import org.openxiangqi.core.pieces.Piece;
 
 public class Main {
@@ -100,7 +100,7 @@ public class Main {
 			remake[boardLocation.getHorizontal()][boardLocation.getVertical()] = piece;
 		}
 
-		HtLauNotationParser notationParser = new HtLauNotationParser();
+		WxfNotationParser notationParser = new WxfNotationParser();
 
 		for (int y = Board.VERTICAL_COUNT - 1; y >= 0; y--) {
 			System.out.print("  ");

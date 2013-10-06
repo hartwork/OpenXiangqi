@@ -43,9 +43,9 @@ public class Game {
 			OffTheBoardException, MalformedNotation, EmptyBoardIllegalMoveException {
 		Notation requestedMove = null;
 		try {
-			requestedMove = new HtLauNotationParser().parse(command, Strictness.LOOSE);
-		} catch (MalformedNotation e) {
 			requestedMove = new WxfNotationParser().parse(command, Strictness.LOOSE);
+		} catch (MalformedNotation e) {
+			requestedMove = new HtLauNotationParser().parse(command, Strictness.LOOSE);
 		}
 
 		requestedMove.apply(board, player);
