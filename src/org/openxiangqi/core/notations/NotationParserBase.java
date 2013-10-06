@@ -23,7 +23,7 @@ import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
 import org.openxiangqi.core.pieces.Piece.PieceType;
 
-public abstract class NotationParserBase {
+public abstract class NotationParserBase implements NotationParser {
 
 	public enum Strictness {
 		STRICT, LOOSE
@@ -74,7 +74,7 @@ public abstract class NotationParserBase {
 
 	protected abstract Direction lookUpDirection(char directionChar);
 
-	protected abstract PieceType lookUpPieceType(char pieceAbbreviation);
+	public abstract PieceType lookUpPieceType(char pieceAbbreviation);
 
 	public abstract char lookUpPieceAbbreviation(PieceType pieceType);
 }

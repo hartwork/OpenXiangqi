@@ -78,7 +78,7 @@ public class HtLauNotationParser extends NotationParserBase {
 		return directionEnum;
 	}
 
-	protected PieceType lookUpPieceType(char pieceAbbreviation) {
+	public PieceType lookUpPieceType(char pieceAbbreviation) {
 		switch (pieceAbbreviation) {
 		case 'C':
 			return PieceType.CANNON;

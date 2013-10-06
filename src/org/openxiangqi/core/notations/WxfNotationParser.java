@@ -82,7 +82,7 @@ public class WxfNotationParser extends NotationParserBase {
 		return directionEnum;
 	}
 
-	protected PieceType lookUpPieceType(char pieceAbbreviation) {
+	public PieceType lookUpPieceType(char pieceAbbreviation) {
 		switch (pieceAbbreviation) {
 		case 'A':
 			return PieceType.ADVISER;
