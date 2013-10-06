@@ -24,10 +24,10 @@ import org.openxiangqi.core.pieces.Adviser;
 import org.openxiangqi.core.pieces.Cannon;
 import org.openxiangqi.core.pieces.Elephant;
 import org.openxiangqi.core.pieces.King;
-import org.openxiangqi.core.pieces.Knight;
+import org.openxiangqi.core.pieces.Horse;
 import org.openxiangqi.core.pieces.Pawn;
 import org.openxiangqi.core.pieces.Piece;
-import org.openxiangqi.core.pieces.Rook;
+import org.openxiangqi.core.pieces.Chariot;
 
 public class Board implements Iterable<Piece> {
 	public static int HORIZONTAL_COUNT = 9;
@@ -42,15 +42,15 @@ public class Board implements Iterable<Piece> {
 	public void setUp() {
 		Player[] players = { Player.RED_SOUTH, Player.BLUE_NORTH };
 		for (Player player : players) {
-			place(new Rook(), new PlayerRelativeLocation(1, 1), player);
-			place(new Knight(), new PlayerRelativeLocation(2, 1), player);
+			place(new Chariot(), new PlayerRelativeLocation(1, 1), player);
+			place(new Horse(), new PlayerRelativeLocation(2, 1), player);
 			place(new Elephant(), new PlayerRelativeLocation(3, 1), player);
 			place(new Adviser(), new PlayerRelativeLocation(4, 1), player);
 			place(new King(), new PlayerRelativeLocation(5, 1), player);
 			place(new Adviser(), new PlayerRelativeLocation(6, 1), player);
 			place(new Elephant(), new PlayerRelativeLocation(7, 1), player);
-			place(new Knight(), new PlayerRelativeLocation(8, 1), player);
-			place(new Rook(), new PlayerRelativeLocation(9, 1), player);
+			place(new Horse(), new PlayerRelativeLocation(8, 1), player);
+			place(new Chariot(), new PlayerRelativeLocation(9, 1), player);
 
 			place(new Cannon(), new PlayerRelativeLocation(2, 3), player);
 			place(new Cannon(), new PlayerRelativeLocation(8, 3), player);

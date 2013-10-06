@@ -91,7 +91,7 @@ public class HtLauNotationParser extends NotationParserBase {
 		case 'P':
 			return PieceType.PAWN;
 		case 'R':
-			return PieceType.ROOK;
+			return PieceType.CHARIOT;
 		case 'S':
 			return PieceType.ADVISER;
 		default:

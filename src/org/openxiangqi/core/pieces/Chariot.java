@@ -19,43 +19,27 @@ package org.openxiangqi.core.pieces;
 
 import org.openxiangqi.core.exceptions.rules.EmptyBoardIllegalMoveException;
 import org.openxiangqi.core.exceptions.rules.OffTheBoardException;
-import org.openxiangqi.core.exceptions.rules.PieceMustNotMoveHorizontally;
+import org.openxiangqi.core.geometry.Board;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
-import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 
-public class Knight extends PieceBase {
+public class Chariot extends PieceBase {
 	public PieceType getPieceType() {
-		return PieceType.HORSE;
+		return PieceType.CHARIOT;
 	}
 
 	public char getHtLauAbbreviation() {
-		return 'N';
+		return 'R';
 	}
 
 	public char getWxfAbbreviation() {
-		return 'H';
+		return 'R';
 	}
 
+	@Override
 	protected PlayerRelativeLocation calculateMoveTarget(PlayerRelativeMove move)
 			throws OffTheBoardException, EmptyBoardIllegalMoveException {
-		if (move.getDirection() == Direction.HORIZONTAL) {
-			throw new PieceMustNotMoveHorizontally();
-		}
-
-		final int pastX = playerRelativeLocation.getHorizontal();
-		final int futureX = move.getParameter();
-
-		final int addX = futureX - pastX;
-		final int distX = Math.abs(addX);
-		if ((distX < 1) || (distX > 2)) {
-			throw new EmptyBoardIllegalMoveException();
-		}
-
-		final int distY = (distX == 1) ? 2 : 1;
-		final int addY = (move.getDirection() == Direction.FORWARD) ? distY
-				: -distY;
-
-		return playerRelativeLocation.cloneAndMove(addX, addY);
+		return calculateMoveTargetStraight(move, Board.HORIZONTAL_COUNT - 1,
+				Board.VERTICAL_COUNT - 1);
 	}
 }

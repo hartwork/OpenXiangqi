@@ -97,7 +97,7 @@ public class WxfNotationParser extends NotationParserBase {
 		case 'P':
 			return PieceType.PAWN;
 		case 'R':
-			return PieceType.ROOK;
+			return PieceType.CHARIOT;
 		default:
 			assert false;
 		}
