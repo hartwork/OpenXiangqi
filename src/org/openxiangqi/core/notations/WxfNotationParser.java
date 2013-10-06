@@ -28,7 +28,7 @@ import org.openxiangqi.core.pieces.Piece.PieceType;
 public class WxfNotationParser extends NotationParserBase {
 	// http://www.wxf.org/xq/computer/wxf_notation.html
 	private static String REGEX_PATTERN = "^([KPEARHC])(([1-9])|([+-]))([+.=-])([1-9])$";
-	
+
 	@Override
 	public Notation parse(String notation, Strictness strictness)
 			throws MalformedNotation {

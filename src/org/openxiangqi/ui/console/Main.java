@@ -34,17 +34,17 @@ import org.openxiangqi.core.notations.HtLauNotationParser;
 import org.openxiangqi.core.pieces.Piece;
 
 public class Main {
-	
+
 	private static void clearDisplayAbove() {
-		System.out.write((byte)'\u001b');
+		System.out.write((byte) '\u001b');
 		System.out.print("[1J");
 	}
 
 	private static void moveCursorUpperLeft() {
-		System.out.write((byte)'\u001b');
+		System.out.write((byte) '\u001b');
 		System.out.print("[0;0H");
 	}
-	
+
 	public static void main(String[] args) {
 		Game game = new Game();
 
@@ -68,7 +68,7 @@ public class Main {
 					storedException = e;
 				}
 			}
-			
+
 			dumpState(game);
 
 			if (storedException != null) {
