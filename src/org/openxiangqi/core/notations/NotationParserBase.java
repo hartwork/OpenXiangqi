@@ -21,6 +21,7 @@ import org.openxiangqi.core.exceptions.MalformedNotation;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
+import org.openxiangqi.core.pieces.Piece.PieceType;
 
 public abstract class NotationParserBase {
 
@@ -61,7 +62,9 @@ public abstract class NotationParserBase {
 					.parseInt(horizontalLocationString);
 		}
 
-		return new Notation(pieceAbbreviation, horizontalConfiguration,
+		PieceType pieceType = lookUpPieceType(pieceAbbreviation);
+
+		return new Notation(pieceType, horizontalConfiguration,
 				playerRelativeHorizontalLocation,
 				playerRelativeVerticalLocationEnum, directionEnum, parameter);
 	}
@@ -70,4 +73,6 @@ public abstract class NotationParserBase {
 			char playerRelativeVerticalLocationChar);
 
 	protected abstract Direction lookUpDirection(char directionChar);
+
+	protected abstract PieceType lookUpPieceType(char pieceAbbreviation);
 }

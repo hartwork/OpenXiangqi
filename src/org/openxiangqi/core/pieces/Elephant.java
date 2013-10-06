@@ -24,6 +24,10 @@ import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 
 public class Elephant extends PieceBase {
+	public PieceType getPieceType() {
+		return PieceType.ELEPHANT;
+	}
+
 	public char getHtLauAbbreviation() {
 		return 'M';
 	}

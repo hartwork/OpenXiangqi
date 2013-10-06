@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 import org.openxiangqi.core.exceptions.MalformedNotation;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
+import org.openxiangqi.core.pieces.Piece.PieceType;
 
 public class HtLauNotationParser extends NotationParserBase {
 	private static String REGEX_PATTERN = "^(([CSKNMPR])([1-9])|([fr])([CSNMPR]))([fbh])([1-9])$";
@@ -75,6 +76,28 @@ public class HtLauNotationParser extends NotationParserBase {
 			assert false;
 		}
 		return directionEnum;
+	}
+
+	protected PieceType lookUpPieceType(char pieceAbbreviation) {
+		switch (pieceAbbreviation) {
+		case 'C':
+			return PieceType.CANNON;
+		case 'K':
+			return PieceType.KING;
+		case 'M':
+			return PieceType.ELEPHANT;
+		case 'N':
+			return PieceType.HORSE;
+		case 'P':
+			return PieceType.PAWN;
+		case 'R':
+			return PieceType.ROOK;
+		case 'S':
+			return PieceType.ADVISER;
+		default:
+			assert false;
+		}
+		return null;
 	}
 
 }

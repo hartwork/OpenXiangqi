@@ -24,6 +24,10 @@ import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 
 public class Cannon extends PieceBase {
+	public PieceType getPieceType() {
+		return PieceType.CANNON;
+	}
+
 	public char getHtLauAbbreviation() {
 		return 'C';
 	}

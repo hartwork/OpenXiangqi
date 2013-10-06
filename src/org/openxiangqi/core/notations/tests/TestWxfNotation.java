@@ -27,6 +27,7 @@ import org.openxiangqi.core.notations.WxfNotationParser;
 import org.openxiangqi.core.notations.Notation;
 import org.openxiangqi.core.notations.Notation.HorizontalConfiguration;
 import org.openxiangqi.core.notations.NotationParserBase.Strictness;
+import org.openxiangqi.core.pieces.Piece.PieceType;
 
 public class TestWxfNotation {
 
@@ -34,7 +35,7 @@ public class TestWxfNotation {
 	public void testStraightValidForward() throws MalformedNotation {
 		Notation receivedNotation = new WxfNotationParser().parse("R1+2",
 				Strictness.STRICT);
-		Notation expectedNotation = new Notation('R',
+		Notation expectedNotation = new Notation(PieceType.ROOK,
 				HorizontalConfiguration.DIFFERENT_VERTICAL_LINES, 1, null,
 				Direction.FORWARD, 2);
 		assertEquals(receivedNotation, expectedNotation);
@@ -44,7 +45,7 @@ public class TestWxfNotation {
 	public void testStraightValidBackward() throws MalformedNotation {
 		Notation receivedNotation = new WxfNotationParser().parse("R3-4",
 				Strictness.STRICT);
-		Notation expectedNotation = new Notation('R',
+		Notation expectedNotation = new Notation(PieceType.ROOK,
 				HorizontalConfiguration.DIFFERENT_VERTICAL_LINES, 3, null,
 				Direction.BACKWARD, 4);
 		assertEquals(receivedNotation, expectedNotation);
@@ -54,7 +55,7 @@ public class TestWxfNotation {
 	public void testStraightValidHorizontalDot() throws MalformedNotation {
 		Notation receivedNotation = new WxfNotationParser().parse("R5.6",
 				Strictness.STRICT);
-		Notation expectedNotation = new Notation('R',
+		Notation expectedNotation = new Notation(PieceType.ROOK,
 				HorizontalConfiguration.DIFFERENT_VERTICAL_LINES, 5, null,
 				Direction.HORIZONTAL, 6);
 		assertEquals(receivedNotation, expectedNotation);
@@ -64,7 +65,7 @@ public class TestWxfNotation {
 	public void testStraightValidHorizontalEqual() throws MalformedNotation {
 		Notation receivedNotation = new WxfNotationParser().parse("R5=6",
 				Strictness.STRICT);
-		Notation expectedNotation = new Notation('R',
+		Notation expectedNotation = new Notation(PieceType.ROOK,
 				HorizontalConfiguration.DIFFERENT_VERTICAL_LINES, 5, null,
 				Direction.HORIZONTAL, 6);
 		assertEquals(receivedNotation, expectedNotation);
@@ -74,7 +75,7 @@ public class TestWxfNotation {
 	public void testSameVerticalLineFront() throws MalformedNotation {
 		Notation receivedNotation = new WxfNotationParser().parse("R+.7",
 				Strictness.STRICT);
-		Notation expectedNotation = new Notation('R',
+		Notation expectedNotation = new Notation(PieceType.ROOK,
 				HorizontalConfiguration.SAME_VERTICAL_LINE, -1,
 				LooseVerticalLocation.FRONT, Direction.HORIZONTAL, 7);
 		assertEquals(receivedNotation, expectedNotation);
@@ -84,7 +85,7 @@ public class TestWxfNotation {
 	public void testSameVerticalLineRear() throws MalformedNotation {
 		Notation receivedNotation = new WxfNotationParser().parse("R-.8",
 				Strictness.STRICT);
-		Notation expectedNotation = new Notation('R',
+		Notation expectedNotation = new Notation(PieceType.ROOK,
 				HorizontalConfiguration.SAME_VERTICAL_LINE, -1,
 				LooseVerticalLocation.REAR, Direction.HORIZONTAL, 8);
 		assertEquals(receivedNotation, expectedNotation);

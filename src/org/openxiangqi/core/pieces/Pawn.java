@@ -26,6 +26,10 @@ import org.openxiangqi.core.geometry.PlayerRelativeMove;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 
 public class Pawn extends PieceBase {
+	public PieceType getPieceType() {
+		return PieceType.PAWN;
+	}
+
 	public char getHtLauAbbreviation() {
 		return 'P';
 	}

@@ -24,6 +24,10 @@ import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 
 public class Adviser extends PieceBase {
+	public PieceType getPieceType() {
+		return PieceType.ADVISER;
+	}
+
 	public char getHtLauAbbreviation() {
 		return 'S';
 	}

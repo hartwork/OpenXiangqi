@@ -23,6 +23,7 @@ import java.util.regex.Pattern;
 import org.openxiangqi.core.exceptions.MalformedNotation;
 import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
+import org.openxiangqi.core.pieces.Piece.PieceType;
 
 public class WxfNotationParser extends NotationParserBase {
 	// http://www.wxf.org/xq/computer/wxf_notation.html
@@ -81,4 +82,25 @@ public class WxfNotationParser extends NotationParserBase {
 		return directionEnum;
 	}
 
+	protected PieceType lookUpPieceType(char pieceAbbreviation) {
+		switch (pieceAbbreviation) {
+		case 'A':
+			return PieceType.ADVISER;
+		case 'C':
+			return PieceType.CANNON;
+		case 'E':
+			return PieceType.ELEPHANT;
+		case 'H':
+			return PieceType.HORSE;
+		case 'K':
+			return PieceType.KING;
+		case 'P':
+			return PieceType.PAWN;
+		case 'R':
+			return PieceType.ROOK;
+		default:
+			assert false;
+		}
+		return null;
+	}
 }

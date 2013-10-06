@@ -24,6 +24,10 @@ import org.openxiangqi.core.geometry.PlayerRelativeLocation;
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 
 public class King extends PieceBase {
+	public PieceType getPieceType() {
+		return PieceType.KING;
+	}
+
 	public char getHtLauAbbreviation() {
 		return 'K';
 	}

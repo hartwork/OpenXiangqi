@@ -27,6 +27,12 @@ import org.openxiangqi.core.geometry.PlayerRelativeMove;
 
 public interface Piece {
 
+	public enum PieceType {
+		ADVISER, CANNON, ELEPHANT, HORSE, KING, PAWN, ROOK,
+	}
+
+	public PieceType getPieceType();
+
 	public char getHtLauAbbreviation();
 
 	public char getWxfAbbreviation();

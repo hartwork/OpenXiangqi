@@ -28,6 +28,7 @@ import org.openxiangqi.core.geometry.PlayerRelativeLocation.LooseVerticalLocatio
 import org.openxiangqi.core.geometry.PlayerRelativeMove;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 import org.openxiangqi.core.pieces.Piece;
+import org.openxiangqi.core.pieces.Piece.PieceType;
 
 public class Notation {
 
@@ -35,19 +36,19 @@ public class Notation {
 		SAME_VERTICAL_LINE, DIFFERENT_VERTICAL_LINES,
 	}
 
-	private char pieceAbbreviation;
+	private PieceType pieceType;
 	private HorizontalConfiguration horizontalConfiguration;
 	private int playerRelativeHorizontalLocation;
 	private LooseVerticalLocation playerRelativeVerticalLocation;
 	private Direction direction;
 	private int parameter;
 
-	public Notation(char pieceAbbreviation,
+	public Notation(PieceType pieceType,
 			HorizontalConfiguration horizontalConfiguration,
 			int playerRelativeHorizontalLocation,
 			LooseVerticalLocation playerRelativeVerticalLocation,
 			Direction direction, int parameter) {
-		this.pieceAbbreviation = pieceAbbreviation;
+		this.pieceType = pieceType;
 		this.horizontalConfiguration = horizontalConfiguration;
 		this.playerRelativeHorizontalLocation = playerRelativeHorizontalLocation;
 		this.playerRelativeVerticalLocation = playerRelativeVerticalLocation;
@@ -67,16 +68,16 @@ public class Notation {
 		return (direction == other.direction)
 				&& (horizontalConfiguration == other.horizontalConfiguration)
 				&& (parameter == other.parameter)
-				&& (pieceAbbreviation == other.pieceAbbreviation)
+				&& (pieceType == other.pieceType)
 				&& (playerRelativeHorizontalLocation == other.playerRelativeHorizontalLocation)
 				&& (playerRelativeVerticalLocation == other.playerRelativeVerticalLocation);
 	}
 
 	private Piece findPieceByHorizontalLocation(Board board,
-			char pieceAbbreviation, int playerRelativeHorizontalLocation,
+			PieceType pieceType, int playerRelativeHorizontalLocation,
 			Player player) throws NoSuchPieceException {
 		for (Piece piece : board) {
-			if ((piece.getHtLauAbbreviation() == pieceAbbreviation)
+			if ((piece.getPieceType() == pieceType)
 					&& (piece.getPlayer() == player)
 					&& (piece.getPlayerRelativeLocation().getHorizontal() == playerRelativeHorizontalLocation)) {
 				return piece;
@@ -85,15 +86,14 @@ public class Notation {
 		throw new NoSuchPieceException();
 	}
 
-	private Piece findPieceByVerticalLocation(Board board,
-			char pieceAbbreviation,
+	private Piece findPieceByVerticalLocation(Board board, PieceType pieceType,
 			LooseVerticalLocation playerRelativeVerticalLocation, Player player)
 			throws NoSuchPieceException {
 		int resIndex = -1;
 		int resVertical = -1;
 		ArrayList<Piece> candidates = new ArrayList<Piece>();
 		for (Piece piece : board) {
-			if ((piece.getHtLauAbbreviation() == pieceAbbreviation)
+			if ((piece.getPieceType() == pieceType)
 					&& (piece.getPlayer() == player)) {
 				candidates.add(piece);
 
@@ -127,10 +127,10 @@ public class Notation {
 			OffTheBoardException, EmptyBoardIllegalMoveException {
 		Piece piece = null;
 		if (horizontalConfiguration == HorizontalConfiguration.SAME_VERTICAL_LINE) {
-			piece = findPieceByVerticalLocation(board, pieceAbbreviation,
+			piece = findPieceByVerticalLocation(board, pieceType,
 					playerRelativeVerticalLocation, player);
 		} else {
-			piece = findPieceByHorizontalLocation(board, pieceAbbreviation,
+			piece = findPieceByHorizontalLocation(board, pieceType,
 					playerRelativeHorizontalLocation, player);
 		}
 

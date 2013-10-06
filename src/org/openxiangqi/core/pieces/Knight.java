@@ -25,6 +25,10 @@ import org.openxiangqi.core.geometry.PlayerRelativeMove;
 import org.openxiangqi.core.geometry.PlayerRelativeMove.Direction;
 
 public class Knight extends PieceBase {
+	public PieceType getPieceType() {
+		return PieceType.HORSE;
+	}
+
 	public char getHtLauAbbreviation() {
 		return 'N';
 	}
