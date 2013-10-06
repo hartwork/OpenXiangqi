@@ -26,6 +26,7 @@ import org.openxiangqi.core.geometry.Board;
 import org.openxiangqi.core.notations.HtLauNotationParser;
 import org.openxiangqi.core.notations.Notation;
 import org.openxiangqi.core.notations.NotationParserBase.Strictness;
+import org.openxiangqi.core.notations.WxfNotationParser;
 
 public class Game {
 
@@ -40,7 +41,13 @@ public class Game {
 
 	public void perform(String command) throws NoSuchPieceException,
 			OffTheBoardException, MalformedNotation, EmptyBoardIllegalMoveException {
-		Notation requestedMove = new HtLauNotationParser().parse(command, Strictness.LOOSE);
+		Notation requestedMove = null;
+		try {
+			requestedMove = new HtLauNotationParser().parse(command, Strictness.LOOSE);
+		} catch (MalformedNotation e) {
+			requestedMove = new WxfNotationParser().parse(command, Strictness.LOOSE);
+		}
+
 		requestedMove.apply(board, player);
 
 		switchTurn();
