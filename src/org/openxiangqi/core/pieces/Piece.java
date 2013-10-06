@@ -31,6 +31,10 @@ public interface Piece {
 		ADVISER, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN,
 	}
 
+	public final PieceType[] ALL_PIECE_TYPES = { PieceType.ADVISER,
+			PieceType.CANNON, PieceType.CHARIOT, PieceType.ELEPHANT,
+			PieceType.HORSE, PieceType.KING, PieceType.PAWN };
+
 	public PieceType getPieceType();
 
 	public void movePlayerRelative(Board board, PlayerRelativeMove move)
