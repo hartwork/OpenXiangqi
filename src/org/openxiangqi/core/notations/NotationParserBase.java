@@ -75,4 +75,6 @@ public abstract class NotationParserBase {
 	protected abstract Direction lookUpDirection(char directionChar);
 
 	protected abstract PieceType lookUpPieceType(char pieceAbbreviation);
+
+	public abstract char lookUpPieceAbbreviation(PieceType pieceType);
 }

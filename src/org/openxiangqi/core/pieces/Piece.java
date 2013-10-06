@@ -33,10 +33,6 @@ public interface Piece {
 
 	public PieceType getPieceType();
 
-	public char getHtLauAbbreviation();
-
-	public char getWxfAbbreviation();
-
 	public void movePlayerRelative(Board board, PlayerRelativeMove move)
 			throws EmptyBoardIllegalMoveException, OffTheBoardException;
 

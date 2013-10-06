@@ -28,14 +28,6 @@ public class Cannon extends PieceBase {
 		return PieceType.CANNON;
 	}
 
-	public char getHtLauAbbreviation() {
-		return 'C';
-	}
-
-	public char getWxfAbbreviation() {
-		return 'C';
-	}
-
 	@Override
 	protected PlayerRelativeLocation calculateMoveTarget(PlayerRelativeMove move)
 			throws OffTheBoardException, EmptyBoardIllegalMoveException {

@@ -100,4 +100,26 @@ public class HtLauNotationParser extends NotationParserBase {
 		return null;
 	}
 
+	public char lookUpPieceAbbreviation(PieceType pieceType) {
+		switch (pieceType) {
+		case ADVISER:
+			return 'S';
+		case CANNON:
+			return 'C';
+		case CHARIOT:
+			return 'R';
+		case KING:
+			return 'K';
+		case ELEPHANT:
+			return 'M';
+		case HORSE:
+			return 'N';
+		case PAWN:
+			return 'P';
+		default:
+			assert false;
+		}
+		return (char)-1;
+	}
+
 }

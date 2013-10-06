@@ -103,4 +103,26 @@ public class WxfNotationParser extends NotationParserBase {
 		}
 		return null;
 	}
+
+	public char lookUpPieceAbbreviation(PieceType pieceType) {
+		switch (pieceType) {
+		case ADVISER:
+			return 'A';
+		case CANNON:
+			return 'C';
+		case CHARIOT:
+			return 'R';
+		case KING:
+			return 'K';
+		case ELEPHANT:
+			return 'E';
+		case HORSE:
+			return 'H';
+		case PAWN:
+			return 'P';
+		default:
+			assert false;
+		}
+		return (char) -1;
+	}
 }

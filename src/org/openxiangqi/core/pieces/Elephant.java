@@ -28,14 +28,6 @@ public class Elephant extends PieceBase {
 		return PieceType.ELEPHANT;
 	}
 
-	public char getHtLauAbbreviation() {
-		return 'M';
-	}
-
-	public char getWxfAbbreviation() {
-		return 'E';
-	}
-
 	@Override
 	protected PlayerRelativeLocation calculateMoveTarget(PlayerRelativeMove move)
 			throws OffTheBoardException, EmptyBoardIllegalMoveException {

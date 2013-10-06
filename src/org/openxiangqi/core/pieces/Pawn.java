@@ -30,14 +30,6 @@ public class Pawn extends PieceBase {
 		return PieceType.PAWN;
 	}
 
-	public char getHtLauAbbreviation() {
-		return 'P';
-	}
-
-	public char getWxfAbbreviation() {
-		return 'P';
-	}
-
 	@Override
 	protected PlayerRelativeLocation calculateMoveTarget(PlayerRelativeMove move)
 			throws OffTheBoardException, EmptyBoardIllegalMoveException {

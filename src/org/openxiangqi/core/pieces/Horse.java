@@ -29,14 +29,6 @@ public class Horse extends PieceBase {
 		return PieceType.HORSE;
 	}
 
-	public char getHtLauAbbreviation() {
-		return 'N';
-	}
-
-	public char getWxfAbbreviation() {
-		return 'H';
-	}
-
 	protected PlayerRelativeLocation calculateMoveTarget(PlayerRelativeMove move)
 			throws OffTheBoardException, EmptyBoardIllegalMoveException {
 		if (move.getDirection() == Direction.HORIZONTAL) {
